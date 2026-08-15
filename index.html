@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MonetizePro — Jasa Monetisasi YouTube</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:#f5f7fb;
+  color:#111827;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+.container{
+  width:min(1100px,92%);
+  margin:auto;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.nav-inner{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:800;
+  color:#111827;
+}
+
+.logo span{
+  color:#ef4444;
+}
+
+.nav-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.btn{
+  padding:11px 18px;
+  border-radius:10px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn-primary{
+  background:#ef4444;
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#dc2626;
+}
+
+.btn-outline{
+  background:#fff;
+  color:#111827;
+  border:1px solid #d1d5db;
+}
+
+/* HERO */
+.hero{
+  padding:75px 0 65px;
+  background:linear-gradient(135deg,#111827,#1f2937);
+  color:white;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:45px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  padding:8px 13px;
+  border-radius:30px;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(35px,5vw,58px);
+  line-height:1.08;
+  margin-bottom:20px;
+}
+
+.hero h1 span{
+  color:#ef4444;
+}
+
+.hero p{
+  color:#d1d5db;
+  line-height:1.7;
+  font-size:17px;
+  margin-bottom:28px;
+}
+
+.hero-card{
+  background:#fff;
+  color:#111827;
+  padding:28px;
+  border-radius:20px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+
+.hero-card h3{
+  margin-bottom:18px;
+}
+
+.check{
+  display:flex;
+  gap:10px;
+  margin:14px 0;
+  color:#374151;
+}
+
+.check b{
+  color:#16a34a;
+}
+
+/* SECTION */
+section{
+  padding:70px 0;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.section-title h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.section-title p{
+  color:#6b7280;
+}
+
+/* SERVICES */
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.service{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  padding:25px;
+  border-radius:16px;
+}
+
+.icon{
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  background:#fee2e2;
+  border-radius:12px;
+  margin-bottom:16px;
+  font-size:21px;
+}
+
+.service p{
+  color:#6b7280;
+  line-height:1.6;
+  margin-top:8px;
+}
+
+/* PRICING */
+.pricing{
+  background:#fff;
+}
+
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.price-card{
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:28px;
+  background:#fff;
+  position:relative;
+}
+
+.price-card.popular{
+  border:2px solid #ef4444;
+}
+
+.popular-label{
+  position:absolute;
+  top:-13px;
+  left:20px;
+  background:#ef4444;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.price{
+  font-size:30px;
+  font-weight:800;
+  margin:15px 0;
+}
+
+.price small{
+  font-size:13px;
+  font-weight:400;
+  color:#6b7280;
+}
+
+.features{
+  list-style:none;
+  margin:20px 0;
+}
+
+.features li{
+  padding:9px 0;
+  color:#4b5563;
+  border-bottom:1px solid #f3f4f6;
+}
+
+/* HOW */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.step{
+  text-align:center;
+}
+
+.number{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 14px;
+  background:#111827;
+  color:#fff;
+  border-radius:50%;
+  font-weight:800;
+}
+
+.step p{
+  color:#6b7280;
+  margin-top:7px;
+  line-height:1.5;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-box{
+  background:#fff;
+  width:min(430px,100%);
+  border-radius:20px;
+  padding:28px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:18px;
+  top:15px;
+  background:none;
+  font-size:25px;
+  color:#6b7280;
+}
+
+.modal-box h2{
+  margin-bottom:20px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.form-group input{
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  outline:none;
+}
+
+.form-group input:focus{
+  border-color:#ef4444;
+}
+
+/* DASHBOARD */
+.dashboard{
+  display:none;
+  padding:35px 0 70px;
+}
+
+.dashboard.active{
+  display:block;
+}
+
+.dashboard-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.dash-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:22px;
+}
+
+.dash-card span{
+  color:#6b7280;
+  font-size:13px;
+}
+
+.dash-card strong{
+  display:block;
+  font-size:25px;
+  margin-top:7px;
+}
+
+.payment-box{
+  margin-top:20px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  padding:25px;
+  border-radius:15px;
+}
+
+.payment-method{
+  margin-top:15px;
+  padding:15px;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+}
+
+/* FOOTER */
+footer{
+  background:#111827;
+  color:#d1d5db;
+  padding:35px 0;
+  text-align:center;
+}
+
+footer p{
+  font-size:13px;
+  line-height:1.6;
+  max-width:700px;
+  margin:10px auto 0;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .services,
+  .pricing-grid{
+    grid-template-columns:1fr;
+  }
+
+  .steps{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:500px){
+  .nav-inner{
+    height:62px;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
+  .nav-buttons .btn{
+    padding:9px 12px;
+    font-size:13px;
+  }
+
+  .hero{
+    padding:55px 0;
+  }
+
+  section{
+    padding:55px 0;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-inner">
+
+    <div class="logo">
+      Monetize<span>Pro</span>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-outline" onclick="openModal('login')">
+        Login
+      </button>
+
+      <button class="btn btn-primary" onclick="openModal('register')">
+        Daftar
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="badge">
+        🚀 Pendampingan Monetisasi YouTube
+      </div>
+
+      <h1>
+        Bantu Channel Anda
+        <span>Siap Dimonetisasi</span>
+      </h1>
+
+      <p>
+        Dapatkan pendampingan untuk mengoptimalkan channel,
+        konten, dan strategi YouTube agar lebih siap memenuhi
+        persyaratan monetisasi.
+      </p>
+
+      <button class="btn btn-primary"
+              onclick="openModal('register')">
+        Mulai Sekarang →
+      </button>
+    </div>
+
+    <div class="hero-card">
+      <h3>Yang Anda Dapatkan</h3>
+
+      <div class="check">
+        <b>✓</b> Audit channel
+      </div>
+
+      <div class="check">
+        <b>✓</b> Strategi optimasi
+      </div>
+
+      <div class="check">
+        <b>✓</b> Konsultasi YouTube
+      </div>
+
+      <div class="check">
+        <b>✓</b> Pendampingan proses
+      </div>
+
+      <div class="check">
+        <b>✓</b> Dukungan CS
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Layanan Kami</h2>
+      <p>Pilih layanan sesuai kebutuhan channel Anda.</p>
+    </div>
+
+    <div class="services">
+
+      <div class="service">
+        <div class="icon">📊</div>
+        <h3>Audit Channel</h3>
+        <p>
+          Analisis channel dan identifikasi bagian yang
+          perlu diperbaiki.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="icon">🎯</div>
+        <h3>Optimasi Channel</h3>
+        <p>
+          Membantu meningkatkan struktur channel,
+          konten dan strategi publikasi.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="icon">💬</div>
+        <h3>Konsultasi</h3>
+        <p>
+          Konsultasi langsung dengan tim untuk
+          membahas perkembangan channel.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Paket Layanan</h2>
+      <p>Pilih paket yang sesuai dengan kebutuhan Anda.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <h3>Basic</h3>
+
+        <div class="price">
+          Rp299.000
+          <small>/paket</small>
+        </div>
+
+        <ul class="features">
+          <li>✓ Audit channel</li>
+          <li>✓ Analisis konten</li>
+          <li>✓ Rekomendasi optimasi</li>
+          <li>✓ Konsultasi 1x</li>
+        </ul>
+
+        <button class="btn btn-outline"
+                onclick="selectPackage('Basic','299000')">
+          Pilih Paket
+        </button>
+      </div>
+
+
+      <div class="price-card popular">
+        <div class="popular-label">
+          PALING POPULER
+        </div>
+
+        <h3>Pro</h3>
+
+        <div class="price">
+          Rp599.000
+          <small>/paket</small>
+        </div>
+
+        <ul class="features">
+          <li>✓ Audit channel</li>
+          <li>✓ Optimasi channel</li>
+          <li>✓ Strategi konten</li>
+          <li>✓ Konsultasi 3x</li>
+          <li>✓ Pendampingan</li>
+        </ul>
+
+        <button class="btn btn-primary"
+                onclick="selectPackage('Pro','599000')">
+          Pilih Paket
+        </button>
+      </div>
+
+
+      <div class="price-card">
+        <h3>Premium</h3>
+
+        <div class="price">
+          Rp999.000
+          <small>/paket</small>
+        </div>
+
+        <ul class="features">
+          <li>✓ Audit lengkap</li>
+          <li>✓ Optimasi channel</li>
+          <li>✓ Strategi konten</li>
+          <li>✓ Konsultasi intensif</li>
+          <li>✓ Pendampingan prioritas</li>
+        </ul>
+
+        <button class="btn btn-outline"
+                onclick="selectPackage('Premium','999000')">
+          Pilih Paket
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Cara Kerja</h2>
+      <p>Proses sederhana untuk memulai layanan.</p>
+    </div>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="number">1</div>
+        <h3>Daftar</h3>
+        <p>Buat akun member.</p>
+      </div>
+
+      <div class="step">
+        <div class="number">2</div>
+        <h3>Pilih Paket</h3>
+        <p>Pilih layanan yang sesuai.</p>
+      </div>
+
+      <div class="step">
+        <div class="number">3</div>
+        <h3>Bayar</h3>
+        <p>Lakukan pembayaran.</p>
+      </div>
+
+      <div class="step">
+        <div class="number">4</div>
+        <h3>Mulai</h3>
+        <p>Tim mulai memproses pesanan.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- DASHBOARD MEMBER -->
+<section class="dashboard" id="dashboard">
+
+  <div class="container">
+
+    <div class="dashboard-header">
+      <div>
+        <h2>Dashboard Member</h2>
+        <p id="welcomeUser"></p>
+      </div>
+
+      <button class="btn btn-outline" onclick="logout()">
+        Logout
+      </button>
+    </div>
+
+    <div class="dashboard-grid">
+
+      <div class="dash-card">
+        <span>Status Akun</span>
+        <strong>Aktif</strong>
+      </div>
+
+      <div class="dash-card">
+        <span>Pesanan</span>
+        <strong id="orderCount">0</strong>
+      </div>
+
+      <div class="dash-card">
+        <span>Status Pembayaran</span>
+        <strong>Belum Ada</strong>
+      </div>
+
+    </div>
+
+    <div class="payment-box">
+
+      <h3>Pembayaran</h3>
+
+      <p style="margin-top:8px;color:#6b7280;">
+        Setelah memilih paket, lakukan pembayaran ke
+        rekening atau e-wallet admin.
+      </p>
+
+      <div class="payment-method">
+        <strong>🏦 Bank</strong>
+        <p>Nama Bank — 1234567890</p>
+        <p>a.n. Nama Anda</p>
+      </div>
+
+      <div class="payment-method">
+        <strong>📱 E-Wallet</strong>
+        <p>WhatsApp / DANA / OVO / GoPay</p>
+        <p>08xxxxxxxxxx</p>
+      </div>
+
+      <br>
+
+      <button class="btn btn-primary"
+              onclick="alert('Pada versi berikutnya fitur upload bukti pembayaran akan terhubung ke database.')">
+        Upload Bukti Pembayaran
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MODAL LOGIN / REGISTER -->
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal()">×</button>
+
+    <div id="loginForm">
+
+      <h2>Login Member</h2>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail"
+               placeholder="nama@email.com">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword"
+               placeholder="Password">
+      </div>
+
+      <button class="btn btn-primary"
+              style="width:100%"
+              onclick="login()">
+        Masuk
+      </button>
+
+      <p style="text-align:center;margin-top:15px;color:#6b7280;">
+        Belum punya akun?
+        <button onclick="showRegister()"
+                style="background:none;color:#ef4444;font-weight:700">
+          Daftar
+        </button>
+      </p>
+
+    </div>
+
+
+    <div id="registerForm" style="display:none">
+
+      <h2>Daftar Member</h2>
+
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+        <input type="text" id="regName"
+               placeholder="Nama lengkap">
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="regEmail"
+               placeholder="nama@email.com">
+      </div>
+
+      <div class="form-group">
+        <label>Nomor WhatsApp</label>
+        <input type="tel" id="regPhone"
+               placeholder="08xxxxxxxxxx">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="regPassword"
+               placeholder="Minimal 6 karakter">
+      </div>
+
+      <button class="btn btn-primary"
+              style="width:100%"
+              onclick="register()">
+        Buat Akun
+      </button>
+
+      <p style="text-align:center;margin-top:15px;color:#6b7280;">
+        Sudah punya akun?
+        <button onclick="showLogin()"
+                style="background:none;color:#ef4444;font-weight:700">
+          Login
+        </button>
+      </p>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="container">
+
+    <strong>MonetizePro</strong>
+
+    <p>
+      Layanan pendampingan dan optimasi channel YouTube.
+      Tidak ada jaminan persetujuan monetisasi karena
+      keputusan akhir berada pada YouTube.
+    </p>
+
+    <p>
+      © 2026 MonetizePro. All rights reserved.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+let selectedPackage = null;
+
+
+/* MODAL */
+
+function openModal(type){
+
+  document.getElementById("modal").classList.add("active");
+
+  if(type === "register"){
+    showRegister();
+  }else{
+    showLogin();
+  }
+
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("active");
+}
+
+function showRegister(){
+
+  document.getElementById("loginForm").style.display="none";
+  document.getElementById("registerForm").style.display="block";
+
+}
+
+function showLogin(){
+
+  document.getElementById("loginForm").style.display="block";
+  document.getElementById("registerForm").style.display="none";
+
+}
+
+
+/* REGISTER */
+
+function register(){
+
+  const name =
+    document.getElementById("regName").value.trim();
+
+  const email =
+    document.getElementById("regEmail").value.trim();
+
+  const phone =
+    document.getElementById("regPhone").value.trim();
+
+  const password =
+    document.getElementById("regPassword").value;
+
+  if(!name || !email || !phone || !password){
+
+    alert("Silakan lengkapi semua data.");
+
+    return;
+  }
+
+  if(password.length < 6){
+
+    alert("Password minimal 6 karakter.");
+
+    return;
+  }
+
+  const user = {
+    name:name,
+    email:email,
+    phone:phone
+  };
+
+  localStorage.setItem(
+    "demoUser",
+    JSON.stringify(user)
+  );
+
+  alert("Pendaftaran berhasil. Silakan login.");
+
+  showLogin();
+
+}
+
+
+/* LOGIN */
+
+function login(){
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const user =
+    JSON.parse(localStorage.getItem("demoUser"));
+
+  if(!user){
+
+    alert("Belum ada akun. Silakan daftar terlebih dahulu.");
+
+    return;
+  }
+
+  if(email !== user.email){
+
+    alert("Email tidak ditemukan.");
+
+    return;
+  }
+
+  localStorage.setItem("loggedIn","true");
+
+  closeModal();
+
+  document.getElementById("dashboard")
+    .classList.add("active");
+
+  document.getElementById("welcomeUser")
+    .innerText = "Selamat datang, " + user.name;
+
+  document.getElementById("dashboard")
+    .scrollIntoView({behavior:"smooth"});
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+  localStorage.removeItem("loggedIn");
+
+  document.getElementById("dashboard")
+    .classList.remove("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* PACKAGE */
+
+function selectPackage(name, price){
+
+  selectedPackage = {
+    name:name,
+    price:price
+  };
+
+  const loggedIn =
+    localStorage.getItem("loggedIn");
+
+  if(!loggedIn){
+
+    alert("Silakan login atau daftar terlebih dahulu.");
+
+    openModal("login");
+
+    return;
+  }
+
+  document.getElementById("dashboard")
+    .classList.add("active");
+
+  document.getElementById("orderCount")
+    .innerText = "1";
+
+  alert(
+    "Paket " + name +
+    " berhasil dipilih. Silakan lakukan pembayaran."
+  );
+
+  document.getElementById("dashboard")
+    .scrollIntoView({behavior:"smooth"});
+
+}
+
+
+/* AUTO LOGIN */
+
+window.addEventListener("load",function(){
+
+  const loggedIn =
+    localStorage.getItem("loggedIn");
+
+  const user =
+    JSON.parse(localStorage.getItem("demoUser"));
+
+  if(loggedIn === "true" && user){
+
+    document.getElementById("dashboard")
+      .classList.add("active");
+
+    document.getElementById("welcomeUser")
+      .innerText = "Selamat datang, " + user.name;
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
