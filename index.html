@@ -935,7 +935,7 @@ function showLogin(){
 
 /* REGISTER */
 
-function register(){
+async function register(){
 
   const name =
     document.getElementById("regName").value.trim();
@@ -950,60 +950,81 @@ function register(){
     document.getElementById("regPassword").value;
 
   if(!name || !email || !phone || !password){
-
     alert("Silakan lengkapi semua data.");
-
     return;
   }
 
   if(password.length < 6){
-
     alert("Password minimal 6 karakter.");
-
     return;
   }
 
-  const user = {
-    name:name,
-    email:email,
-    phone:phone
-  };
+  const { data, error } =
+    await supabaseClient.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          name: name,
+          phone: phone
+        }
+      }
+    });
 
-  localStorage.setItem(
-    "demoUser",
-    JSON.stringify(user)
-  );
+  if(error){
+    alert("Pendaftaran gagal: " + error.message);
+    return;
+  }
 
   alert("Pendaftaran berhasil. Silakan login.");
 
   showLogin();
-
 }
 
 
 /* LOGIN */
 
-function login(){
+async function login(){
 
   const email =
     document.getElementById("loginEmail").value.trim();
 
-  const user =
-    JSON.parse(localStorage.getItem("demoUser"));
+  const password =
+    document.getElementById("loginPassword").value;
 
-  if(!user){
-
-    alert("Belum ada akun. Silakan daftar terlebih dahulu.");
-
+  if(!email || !password){
+    alert("Silakan isi email dan password.");
     return;
   }
 
-  if(email !== user.email){
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
 
-    alert("Email tidak ditemukan.");
-
+  if(error){
+    alert("Login gagal: " + error.message);
     return;
   }
+
+  const user = data.user;
+
+  localStorage.setItem("loggedIn", "true");
+
+  localStorage.setItem(
+    "demoUser",
+    JSON.stringify({
+      name: user.user_metadata?.name || "",
+      email: user.email,
+      phone: user.user_metadata?.phone || ""
+    })
+  );
+
+  alert("Login berhasil.");
+
+  closeModal();
+}
 
   localStorage.setItem("loggedIn","true");
 
